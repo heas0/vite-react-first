@@ -1,4 +1,5 @@
 import './App.css'
+import {useState} from "react";
 
 
 const user = {
@@ -13,10 +14,15 @@ const products = [
     { title: 'Apple', isFruit: true, id: 3 },
 ];
 
-
 function MyButton() {
+    const [count, setCount] = useState(0);
+    function handleClick() {
+        setCount(count + 1)
+    }
     return (
-        <button>I'm a button</button>
+        <button onClick={handleClick}>
+            You clicked me, {count} times
+        </button>
     );
 }
 
@@ -38,7 +44,7 @@ function Profile() {
 }
 
 function ShoppingList() {
-    const listItems = products.map(product =>
+    const listItems = products.map((product) =>
         <li
             key={product.id}
             style={{
@@ -61,7 +67,11 @@ export default function MyApp() {
       <div>
           <Profile />
           <h1>Welcome to my app</h1>
-          <MyButton/>
+          <div>
+              <h1>Counters that update separately</h1>
+              <MyButton/>
+              <MyButton/>
+          </div>
           <ShoppingList />
       </div>
   )
